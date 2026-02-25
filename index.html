@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Rojhelat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Oswald', sans-serif;
+        }
+        .gold-accent {
+            color: #d4af37;
+        }
+        .gold-bg {
+            background-color: #d4af37;
+        }
+        .gold-border {
+            border-color: #d4af37;
+        }
+        .hero-pattern {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        .time-slot.selected {
+            background-color: #d4af37;
+            color: #000;
+            border-color: #d4af37;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .clipper-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="scissors" class="w-8 h-8 gold-accent"></i>
+                    <span class="brand-font text-2xl font-bold tracking-wider text-white">SALON ROJHELAT</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-gray-300 hover:text-yellow-500 transition-colors uppercase text-sm tracking-widest">Tjänster</a>
+                    <a href="#barbers" class="text-gray-300 hover:text-yellow-500 transition-colors uppercase text-sm tracking-widest">Barberare</a>
+                    <a href="#booking" class="text-gray-300 hover:text-yellow-500 transition-colors uppercase text-sm tracking-widest">Boka Nu</a>
+                    <a href="#contact" class="text-gray-300 hover:text-yellow-500 transition-colors uppercase text-sm tracking-widest">Kontakt</a>
+                </div>
+                <button onclick="scrollToBooking()" class="gold-bg text-black px-6 py-2 rounded-none font-bold uppercase tracking-wider hover:bg-yellow-400 transition-all transform hover:scale-105">
+                    Boka
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="clipper-animation mb-6">
+                <i data-lucide="scissors" class="w-16 h-16 gold-accent mx-auto"></i>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter text-white">
+                PRECISION <span class="gold-accent">KLIPP</span><br>
+                <span class="block mt-6">TIDLÖS <span class="gold-accent">STIL</span></span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
+                En bättre version av dig själv.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToBooking()" class="gold-bg text-black px-8 py-4 text-lg font-bold uppercase tracking-wider hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-2xl">
+                    Boka Tid
+                </button>
+                <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})" class="border-2 border-white text-white px-8 py-4 text-lg font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
+                    Se Tjänster
+                </button>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 gold-accent"></i>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-zinc-900 border-y border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-3xl font-bold gold-accent brand-font">15+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Års Erfarenhet</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold gold-accent brand-font">50K+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Nöjda Kunder</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold gold-accent brand-font">6</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Expert Barberare</div>
+            </div>
+            <div>
+                <div class="text-3xl font-bold gold-accent brand-font">4.6</div>
+                <div class="text-gray-400 text-sm uppercase tracking-wider">Google Betyg</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">VÅRA <span class="gold-accent">TJÄNSTER</span></h2>
+                <div class="w-24 h-1 gold-bg mx-auto"></div>
+                <p class="mt-4 text-gray-400">Premium klippning anpassad till din stil</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Classic Cut -->
+                <div class="service-card bg-zinc-900 p-8 border border-zinc-800 transition-all duration-300 cursor-pointer group" onclick="selectService('Classic Cut', 200)">
+                    <div class="flex justify-between items-start mb-4">
+                        <i data-lucide="user" class="w-10 h-10 gold-accent"></i>
+                        <span class="text-2xl font-bold gold-accent">200 SEK</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-yellow-500 transition-colors">Klassisk Klippning</h3>
+                    <p class="text-gray-400 mb-4">Precisionklippning med konsultation och styling.</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                        <span>30 min</span>
+                    </div>
+                </div>
+
+                <!-- Beard Sculpting -->
+                <div class="service-card bg-zinc-900 p-8 border border-zinc-800 transition-all duration-300 cursor-pointer group" onclick="selectService('Beard Sculpting', 150)">
+                    <div class="flex justify-between items-start mb-4">
+                        <i data-lucide="sparkles" class="w-10 h-10 gold-accent"></i>
+                        <span class="text-2xl font-bold gold-accent">150 SEK</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-yellow-500 transition-colors">Skäggformning</h3>
+                    <p class="text-gray-400 mb-4">Expertformning, trimning och konditionering av skägg med rakblad.</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                        <span>30 min</span>
+                    </div>
+                </div>
+
+                <!-- The Full Experience -->
+                <div class="service-card bg-zinc-900 p-8 border border-zinc-800 transition-all duration-300 cursor-pointer group" onclick="selectService('The Full Experience', 350)">
+                    <div class="flex justify-between items-start mb-4">
+                        <i data-lucide="crown" class="w-10 h-10 gold-accent"></i>
+                        <span class="text-2xl font-bold gold-accent">350 SEK</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-yellow-500 transition-colors">Den Fulla Upplevelsen</h3>
+                    <p class="text-gray-400 mb-4">Klippning + Skägg. Den ultimata sessionen.</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                        <span>45 min</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Barbers Section -->
+    <section id="barbers" class="py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">TRÄFFA <span class="gold-accent">MÄSTARNA</span></h2>
+                <div class="w-24 h-1 gold-bg mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Barber 1 -->
+                <div class="group relative overflow-hidden">
+                    <div class="aspect-w-3 aspect-h-4 bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Marcus" class="object-cover w-full h-96 grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="text-2xl font-bold text-white">barber 1</h3>
+                        <p class="gold-accent mb-2">Mästarbarberare / Ägare</p>
+                        <p class="text-gray-400 text-sm">Specialiserad på klassiska klippningar och rakblad rakning. 15 års erfarenhet.</p>
+                    </div>
+                </div>
+
+                <!-- Barber 2 -->
+                <div class="group relative overflow-hidden">
+                    <div class="aspect-w-3 aspect-h-4 bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Eddie" class="object-cover w-full h-96 grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="text-2xl font-bold text-white">barber 2</h3>
+                        <p class="gold-accent mb-2">Fade Specialist</p>
+                        <p class="text-gray-400 text-sm">Känd för perfekta fades och geometriska designer.</p>
+                    </div>
+                </div>
+
+                <!-- Barber 3 -->
+                <div class="group relative overflow-hidden">
+                    <div class="aspect-w-3 aspect-h-4 bg-gray-800">
+                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80" alt="Sarah" class="object-cover w-full h-96 grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="text-2xl font-bold text-white">barber 3</h3>
+                        <p class="gold-accent mb-2">Skäggexpert</p>
+                        <p class="text-gray-400 text-sm">Skäggformning och klippning specialist. Precision är hans konst.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-24 bg-black relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">BOKA DIN <span class="gold-accent">KLIPP</span></h2>
+                <div class="w-24 h-1 gold-bg mx-auto"></div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="bg-zinc-900 p-8 md:p-12 border border-zinc-800 shadow-2xl">
+                <form id="bookingForm" class="space-y-6" onsubmit="handleBooking(event)">
+                    <!-- Service Selection -->
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Välj Tjänst</label>
+                        <select id="serviceSelect" class="w-full bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors" onchange="updatePrice()">
+                            <option value="">Välj en tjänst...</option>
+                            <option value="Klassisk Klippning" data-price="200">Klassisk Klippning - 200 SEK</option>
+                            <option value="Skäggformning" data-price="150">Skäggformning - 150 SEK</option>
+                            <option value="Den Fulla Upplevelsen" data-price="350">Den Fulla Upplevelsen - 350 SEK</option>
+                        </select>
+                    </div>
+
+                    <!-- Barber Selection -->
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Föredragen Barberare (Valfritt)</label>
+                        <select id="barberSelect" class="w-full bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors">
+                            <option value="No Preference">Ingen Preferens</option>
+                            <option value="barber 1">barber 1</option>
+                            <option value="barber 2">barber 2</option>
+                            <option value="barber 3">barber 3</option>
+                        </select>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Month & Day Selection -->
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Datum</label>
+                            <div class="flex gap-2">
+                                <select id="monthSelect" required class="w-1/2 bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors" onchange="generateTimeSlots()">
+                                    <option value="">Månad...</option>
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Mars</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Maj</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Augusti</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                                <select id="daySelect" required class="w-1/2 bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors" onchange="generateTimeSlots()">
+                                    <option value="">Dag...</option>
+                                </select>
+                            </div>
+                            <small class="text-gray-500 mt-2 block">Välj månad och dag för att se lediga tider.</small>
+                        </div>
+
+                        <!-- Time Slots -->
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Tid</label>
+                            <div id="timeSlots" class="grid grid-cols-3 gap-2">
+                                <div class="col-span-3 text-gray-500 text-sm italic">Vänligen välj ett datum först</div>
+                            </div>
+                            <input type="hidden" id="selectedTime" required>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Fullständigt Namn</label>
+                            <input type="text" id="nameInput" required class="w-full bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors" placeholder="Ange ditt namn">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Telefonnummer</label>
+                            <input type="tel" id="phoneInput" required class="w-full bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors" placeholder="Ange ditt telefonnummer">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Speciella Önskemål</label>
+                        <textarea id="notesInput" rows="3" class="w-full bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors" placeholder="Några specifika önskemål eller anteckningar..."></textarea>
+                    </div>
+
+                    <!-- Price Display -->
+                    <div class="border-t border-zinc-800 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-gray-400 uppercase text-sm tracking-wider">Totalt Pris</span>
+                            <div id="priceDisplay" class="text-3xl font-bold gold-accent brand-font">0 SEK</div>
+                        </div>
+                        <button type="submit" class="gold-bg text-black px-8 py-4 font-bold uppercase tracking-wider hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-lg flex items-center gap-2">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                            Bekräfta Bokning
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-zinc-900 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 text-white">BESÖK <span class="gold-accent">OSS</span></h2>
+                    <div class="space-y-4 text-gray-400">
+                        <div class="flex items-start space-x-4">
+                            <i data-lucide="map-pin" class="w-6 h-6 gold-accent mt-1"></i>
+                            <div>
+                                <p class="font-bold text-white">Salon Rojhelat</p>
+                                <p>Tisslingeplan 8,</p>
+                                <p>163 61 Spånga</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="phone" class="w-6 h-6 gold-accent"></i>
+                            <p class="text-white font-bold">070-018 02 72</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="mail" class="w-6 h-6 gold-accent"></i>
+                            <p>bookings@salonrojhelat.com</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="clock" class="w-6 h-6 gold-accent"></i>
+                            <div>
+                                <p>Mån-Fre: 9.00 - 20.00</p>
+                                <p>Lör: 8.00 - 18.00</p>
+                                <p>Sön: 10.00 - 16.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 hover:text-black transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 hover:text-black transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-zinc-800 flex items-center justify-center hover:bg-yellow-500 hover:text-black transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-800 p-2 rounded-lg overflow-hidden h-96">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.google.com/maps?q=Salon+Rojhelat,+Tisslingeplan+8,+163+61+Spånga&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                        style="border:0;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-zinc-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                <i data-lucide="scissors" class="w-6 h-6 gold-accent"></i>
+                <span class="brand-font text-xl font-bold text-white">SALON ROJHELAT</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2024 Salon Rojhelat. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-yellow-500 p-8 max-w-md w-full text-center transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+            <div class="w-20 h-20 gold-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-10 h-10 text-black"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Bokning Bekräftad!</h3>
+            <p class="text-gray-400 mb-6">Din tid är bokad. Vi har skickat en bekräftelse till din e-post.</p>
+            
+            <div class="bg-black p-4 rounded text-left mb-6 space-y-2 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Tjänst:</span>
+                    <span class="text-white font-bold" id="modalService"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Datum:</span>
+                    <span class="text-white font-bold" id="modalDate"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Tid:</span>
+                    <span class="text-white font-bold" id="modalTime"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Barberare:</span>
+                    <span class="text-white font-bold" id="modalBarber"></span>
+                </div>
+            </div>
+            
+            <button onclick="closeModal()" class="gold-bg text-black px-8 py-3 font-bold uppercase tracking-wider hover:bg-yellow-400 transition-all w-full">
+                Klar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Populate days based on selected month
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthSelect = document.getElementById('monthSelect');
+            const daySelect = document.getElementById('daySelect');
+            if (monthSelect && daySelect) {
+                monthSelect.addEventListener('change', function() {
+                    const month = parseInt(monthSelect.value);
+                    let days = 31;
+                    if ([4,6,9,11].includes(month)) days = 30;
+                    else if (month === 2) {
+                        const year = new Date().getFullYear();
+                        days = ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+                    }
+                    daySelect.innerHTML = '<option value="">Dag...</option>';
+                    for (let d = 1; d <= days; d++) {
+                        daySelect.innerHTML += `<option value="${d}">${d}</option>`;
+                    }
+                });
+            }
+        });
+
+        // Generate time slots
+        function generateTimeSlots() {
+            const month = document.getElementById('monthSelect').value;
+            const day = document.getElementById('daySelect').value;
+            const container = document.getElementById('timeSlots');
+            if (!month || !day) {
+                container.innerHTML = '<div class="col-span-3 text-gray-500 text-sm italic">Vänligen välj månad och dag först</div>';
+                return;
+            }
+            const times = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+            container.innerHTML = times.map(time => `
+                <button type="button" 
+                    onclick="selectTime('${time}', this)" 
+                    class="time-slot border border-zinc-700 text-gray-400 py-2 px-3 text-sm rounded-lg hover:border-yellow-500 hover:text-yellow-500 transition-all focus:outline-none focus:ring-2 focus:ring-yellow-500 ${Math.random() > 0.7 ? 'opacity-50 cursor-not-allowed' : ''}"
+                    ${Math.random() > 0.7 ? 'disabled' : ''}>
+                    ${time}
+                </button>
+            `).join('');
+        }
+
+        function selectTime(time, btn) {
+            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('selectedTime').value = time;
+        }
+
+        function selectService(name, price) {
+            const select = document.getElementById('serviceSelect');
+            // Find option with matching text
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === name) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+            updatePrice();
+            scrollToBooking();
+        }
+
+        function updatePrice() {
+            const select = document.getElementById('serviceSelect');
+            const option = select.options[select.selectedIndex];
+            const price = option.getAttribute('data-price') || 0;
+            document.getElementById('priceDisplay').textContent = price > 0 ? price + ' SEK' : '0 SEK';
+        }
+
+        function scrollToBooking() {
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            const service = document.getElementById('serviceSelect').value;
+            const barber = document.getElementById('barberSelect').value;
+            const month = document.getElementById('monthSelect').value;
+            const day = document.getElementById('daySelect').value;
+            const time = document.getElementById('selectedTime').value;
+            if (!service || !month || !day || !time) {
+                alert('Vänligen fyll i alla obligatoriska fält');
+                return;
+            }
+            // Show success modal
+            document.getElementById('modalService').textContent = service;
+            const year = new Date().getFullYear();
+            const dateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+            document.getElementById('modalDate').textContent = new Date(dateString).toLocaleDateString('sv-SE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('modalTime').textContent = time;
+            document.getElementById('modalBarber').textContent = barber;
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            // Reset form
+            document.getElementById('bookingForm').reset();
+            document.getElementById('timeSlots').innerHTML = '<div class="col-span-3 text-gray-500 text-sm italic">Vänligen välj månad och dag först</div>';
+            updatePrice();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
