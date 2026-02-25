@@ -192,58 +192,6 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Barbers Section -->
-    <section id="barbers" class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">TRÄFFA <span class="gold-accent">MÄSTARNA</span></h2>
-                <div class="w-24 h-1 gold-bg mx-auto"></div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Barber 1 -->
-                <div class="group relative overflow-hidden">
-                    <div class="aspect-w-3 aspect-h-4 bg-gray-800">
-                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Marcus" class="object-cover w-full h-96 grayscale group-hover:grayscale-0 transition-all duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-2xl font-bold text-white">barber 1</h3>
-                        <p class="gold-accent mb-2">Mästarbarberare / Ägare</p>
-                        <p class="text-gray-400 text-sm">Specialiserad på klassiska klippningar och rakblad rakning. 15 års erfarenhet.</p>
-                    </div>
-                </div>
-
-                <!-- Barber 2 -->
-                <div class="group relative overflow-hidden">
-                    <div class="aspect-w-3 aspect-h-4 bg-gray-800">
-                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Eddie" class="object-cover w-full h-96 grayscale group-hover:grayscale-0 transition-all duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-2xl font-bold text-white">barber 2</h3>
-                        <p class="gold-accent mb-2">Fade Specialist</p>
-                        <p class="text-gray-400 text-sm">Känd för perfekta fades och geometriska designer.</p>
-                    </div>
-                </div>
-
-                <!-- Barber 3 -->
-                <div class="group relative overflow-hidden">
-                    <div class="aspect-w-3 aspect-h-4 bg-gray-800">
-                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80" alt="Sarah" class="object-cover w-full h-96 grayscale group-hover:grayscale-0 transition-all duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                    <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-2xl font-bold text-white">barber 3</h3>
-                        <p class="gold-accent mb-2">Skäggexpert</p>
-                        <p class="text-gray-400 text-sm">Skäggformning och klippning specialist. Precision är hans konst.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Booking Section -->
     <section id="booking" class="py-24 bg-black relative">
@@ -267,17 +215,7 @@
                             <option value="Den Fulla Upplevelsen" data-price="350">Den Fulla Upplevelsen - 350 SEK</option>
                         </select>
                     </div>
-
-                    <!-- Barber Selection -->
-                    <div>
-                        <label class="block text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">Föredragen Barberare (Valfritt)</label>
-                        <select id="barberSelect" class="w-full bg-black border border-zinc-700 text-white px-4 py-3 focus:outline-none focus:border-yellow-500 transition-colors">
-                            <option value="No Preference">Ingen Preferens</option>
-                            <option value="barber 1">barber 1</option>
-                            <option value="barber 2">barber 2</option>
-                            <option value="barber 3">barber 3</option>
-                        </select>
-                    </div>
+                    
 
                     <div class="grid md:grid-cols-2 gap-6">
                         <!-- Month & Day Selection -->
@@ -584,4 +522,5 @@
         });
     </script>
 </body>
+
 </html>
