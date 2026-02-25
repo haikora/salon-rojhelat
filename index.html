@@ -486,7 +486,6 @@
             const dateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
             document.getElementById('modalDate').textContent = new Date(dateString).toLocaleDateString('sv-SE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             document.getElementById('modalTime').textContent = time;
-            document.getElementById('modalBarber').textContent = barber;
             const modal = document.getElementById('successModal');
             const content = document.getElementById('modalContent');
             modal.classList.remove('hidden');
@@ -524,3 +523,4 @@
 </body>
 
 </html>
+
